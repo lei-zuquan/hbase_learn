@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="hbase_coprocesser">
+    <output-path>$PROJECT_DIR$/out/artifacts/hbase_coprocesser</output-path>
+    <root id="archive" name="hbase_coprocesser.jar">
+      <element id="module-output" name="hbase-coprocesser" />
+    </root>
+  </artifact>
+</component>
