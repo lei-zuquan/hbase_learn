@@ -16,10 +16,10 @@ public class Test {
         // System.out.println(C.class.getInterfaces().length);
         // new java.Lang.String();
 
-        final MemoryUsage usage = HeapMemorySizeUtil.safeGetHeapMemoryUsage();
+        //final MemoryUsage usage = HeapMemorySizeUtil.safeGetHeapMemoryUsage();
         // -Xms 1/64
-        System.out.println(usage.getInit());
+        //System.out.println(usage.getInit());
         // -Xmx 1/4
-        System.out.println(usage.getMax());
+        //System.out.println(usage.getMax());
     }
 }

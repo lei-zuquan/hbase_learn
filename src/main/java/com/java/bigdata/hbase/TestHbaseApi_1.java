@@ -29,17 +29,18 @@ public class TestHbaseApi_1 {
         /**
          * 通过java代码访问hbase数据库
          */
+
         // 0）创建配置对象，获取Hbase的连接
-
-
-
         Configuration conf = HBaseConfiguration.create();
 
         // 1）获取hbase连接对象
         // classLoader : Thread.currentThread.getContextClassLoader
         // classpath : hbase-default.xml,hbase-site.xml
-        //Connection connection = ConnectionFactory.createConnection(conf);
+        // Connection connection = ConnectionFactory.createConnection(conf);
+        conf.set("hbase.zookeeper.property.clientPort", "2181");
+        conf.set("hbase.zookeeper.quorum", "172.24.1.226,172.24.1.224,172.24.1.225");
         Connection connection = ConnectionFactory.createConnection(conf);
+
         System.out.println(connection);
 
         // 2）获取操作对象 : Admin
@@ -98,15 +99,14 @@ public class TestHbaseApi_1 {
                  }
              }
 
-
          } else {
              // 创建表
 
              // 创建表描述对象
              HTableDescriptor hd = new HTableDescriptor(tableName);
 
-             hd.addCoprocessor("com.java.bigdata.hbase.coprocesser" +
-                     ".InsertMynamespaceStudentCoprocesser"); // 协处理器
+             //hd.addCoprocessor("com.java.bigdata.hbase.coprocesser" +
+             //        ".InsertMynamespaceStudentCoprocesser"); // 协处理器
              // 增加列族
              HColumnDescriptor cd = new HColumnDescriptor("info");
              cd.setMaxVersions(3); // 设计表的最大版本数，默认最大版本为1
@@ -117,12 +117,10 @@ public class TestHbaseApi_1 {
          }
 
 
-        // 4）获取操作结果
+         // 4）获取操作结果
 
-        // 5）关闭数据库连接
-
-
-
-
+         // 5）关闭数据库连接
+         admin.close();
+         connection.close();
     }
 }

@@ -1,5 +1,6 @@
 package com.java.bigdata.hbase;
 
+//import javafx.scene.control.Cell;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.*;
 import org.apache.hadoop.hbase.client.*;
@@ -21,7 +22,7 @@ public class TestHbaseApi_2 {
         //使用HBaseConfiguration的单例方法实例化
         conf = HBaseConfiguration.create();
         conf.set("hbase.zookeeper.property.clientPort", "2181");
-        conf.set("hbase.zookeeper.quorum", "192.168.9.102");
+        conf.set("hbase.zookeeper.quorum", "172.24.1.226,172.24.1.224,172.24.1.225");
     }
     // 如果resources没有hbase-site.xml配置文件的话，可以采用如上方式
 
@@ -202,7 +203,7 @@ public class TestHbaseApi_2 {
         Connection connection = ConnectionFactory.createConnection(conf);
 
         // 删除表
-        TableName tableName = TableName.valueOf("my_namespace:test");
+        TableName tableName = TableName.valueOf("my_namespace:student");
 
         Admin admin = connection.getAdmin();
         if (admin.tableExists(tableName)) {

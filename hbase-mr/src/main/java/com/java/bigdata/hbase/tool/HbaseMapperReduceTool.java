@@ -39,7 +39,7 @@ public class HbaseMapperReduceTool implements Tool {
         // 执行作业
         boolean flg = job.waitForCompletion(true);
 
-        return flg ? JobStatus.State.SUCCEEDED.getValue() : JobStatus.State.FAILED.getValue();
+        return flg ? JobStatus.SUCCEEDED : JobStatus.FAILED;
     }
 
     @Override
