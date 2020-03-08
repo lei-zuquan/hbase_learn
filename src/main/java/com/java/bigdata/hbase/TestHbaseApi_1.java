@@ -38,7 +38,7 @@ public class TestHbaseApi_1 {
         // classpath : hbase-default.xml,hbase-site.xml
         // Connection connection = ConnectionFactory.createConnection(conf);
         conf.set("hbase.zookeeper.property.clientPort", "2181");
-        conf.set("hbase.zookeeper.quorum", "172.24.1.226,172.24.1.224,172.24.1.225");
+        conf.set("hbase.zookeeper.quorum", "node-01,node-02,node-03");
         Connection connection = ConnectionFactory.createConnection(conf);
 
         System.out.println(connection);
