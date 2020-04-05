@@ -1,0 +1,30 @@
+HRegionServer.java
+public class HRegionServer extends HasThread implements RegionServerServices, LastSequenceId {}
+--------------------
+    run()
+        handleReportForDutyResponse(w);
+            startServiceThreads();
+                MemStoreFlusher.start()
+
+MemStoreFlusher.java
+--------------------将memStore数据刷写到文件中
+    start()
+        FlushHandler: private class FlushHandler extends HasThread {}
+            flushOneForGlobalPressure()
+                flushRegion(regionToFlush, true, true);
+                flushRegion(final Region region, final boolean emergencyFlush, boolean forceFlushAllStores)
+                  /**
+                   * Flush a region. 刷写region到文件中
+                   * @param region Region to flush. 参数：region对象
+                   * @param emergencyFlush Set if we are being force flushed. If true the region
+                   * needs to be removed from the flush queue. If false, when we were called
+                   * from the main flusher run loop and we got the entry to flush by calling
+                   * poll on the flush queue (which removed it).
+                   * 设置是否强制刷新。 如果为真，则该区域需要从刷新队列中删除。
+                   * 如果为假，当我们被调用从主冲洗程序运行循环中，我们通过调用获得要冲洗的条目在刷新队列（将其删除）上轮询。
+                   * @param forceFlushAllStores whether we want to flush all store. 是否要刷新所有存储
+                   * @return true if the region was successfully flushed, false otherwise. If
+                   * false, there will be accompanying log messages explaining why the region was
+                   * not flushed.
+                   * 如果成功刷新了区域，则返回true，否则返回false。 如果为假，将伴随日志消息解释为什么该区域是不冲洗。
+                   */
